@@ -7,12 +7,13 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.js"></script>
     <script type="text/javascript" src="cashregister.js"></script>
   </head>
-
+<!-- Set the controller for the body -->
 <body ng-controller="registerController">
-
+<!-- set the container for all the page content -->
     <div class="container-fluid">
-
+    <!-- Creates the panel div to wrap the content -->
         <div class="panel panel-default">
+        <!-- HTML for the header -->
             <div class="panel-heading">
                 <h1>$$$ CASH REGISTER $$$</h1>
                 <hr>
@@ -20,18 +21,20 @@
                 <div ng-show="paid">Amount Paid: {{paid | currency}}</div>
                 <div ng-show="totalDue">Change Due: {{totalDue}}</div>
             </div>
+            <!-- HTML for the body content -->
             <div class="panel-body">
                 <form name="cashRegister" class="form-horizontal">
-                    <!-- Product Selector -->
                     <div class="form-group">
-                        <div class="col-md-3 product-inputs-left">
+                    <!-- Input for Total Amount of order -->
+                        <div class="col-md-3">
                             <div class="input-group">
-                                  <div class="input-group-addon">$</div>
+                                <div class="input-group-addon">$</div>
                                   <input type="text" class="form-control input-lg" ng-model="total" placeholder="Total Amount">
-                                </div>
+                            </div>
                             <span class="help-block help-block-label">Total Amount</span>
                         </div>
-                        <div class="col-md-2 product-inputs">
+                        <!-- Input for Total amount of money given -->
+                        <div class="col-md-2">
                                 <div class="input-group">
                                   <div class="input-group-addon">$</div>
                                   <input type="text" class="form-control input-lg" ng-model="paid" placeholder="Amount Paid">
@@ -39,33 +42,33 @@
                            
                             <span class="help-block help-block-label">Amount Paid</span>
                         </div>
-                        <div class="col-md-2 product-inputs-right">
+                        <!-- Button that activates the make change function -->
+                        <div class="col-md-2">
                             <button class="btn btn-lg btn-primary btn-block" ng-click="makeChange()">
                                 Make Change!
                             </button>
-                            <span class="help-block help-block-label">Add to Cart</span>
                         </div>
                     </div>
                 </form>
 
-                <!-- Cart Contents -->
+                <!-- Contents that will be populated by the coins and change information -->
                 <div class="well">
                     <table id="cartTable" class="table table-condensed table-striped table-responsive table-borderless">
-                    <tbody>
-                    <span ng-show="totalDue">Amount of Coins: {{changeArr.length}}</span><hr>
-                    <div ng-repeat="item in coinAmount track by $index">{{item}}</div>
-                    <hr>
-                       <tr>                                     
-                             <td>Coin Type</td>
-                             <td>Coin Image</td>
-                             <td>Change Value</td>
-                       </tr>
-                       <tr ng-repeat="change in changeArr track by $index">
-                            <td>{{change.name}}</td>
-                            <td><img ng-src="{{change.image}}"></td>
-                            <td>{{change.value | currency}}</td>
-                       </tr>
-                    </tbody>
+                        <tbody>
+                            <span ng-show="totalDue">Amount of Coins: {{changeArr.length}}</span><hr>
+                            <div ng-repeat="item in coinAmount track by $index">{{item}}</div>
+                            <hr>
+                           <tr>                                     
+                                 <td>Coin Type</td>
+                                 <td>Coin Image</td>
+                                 <td>Change Value</td>
+                           </tr>
+                           <tr ng-repeat="change in changeArr track by $index">
+                                <td>{{change.name}}</td>
+                                <td><img ng-src="{{change.image}}"></td>
+                                <td>{{change.value | currency}}</td>
+                           </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>

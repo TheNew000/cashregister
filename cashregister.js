@@ -1,9 +1,10 @@
 var cashRegisterApp = angular.module("cashRegisterApp", []);
 cashRegisterApp.controller('registerController', function($scope, $filter){
     // Declare the coin objects with value, image, and name
+
     var purse = {
         dollar: {
-            name: "Dollar Coin",
+            name: "dollar coin",
             value: 1.00,
             image: "dollar.png"
         },
@@ -61,11 +62,12 @@ cashRegisterApp.controller('registerController', function($scope, $filter){
         arr.sort(function (a, b){
             if(a.value > b.value){
                 return -1;
-            }if (a.value < b.value) {
+            }else if (a.value < b.value) {
                 return 1;
-            }
+            }else{
                 return 0;
-            });
+            }
+        });
         // Pushes amount of each type of coin to array for population on the page
         for (var i = 0; i < arr.length; i++) {
             if(arr[i] != current){
