@@ -1,43 +1,40 @@
-var cashRegisterApp = angular.module("cashRegisterApp", []);
-cashRegisterApp.controller('registerController', function($scope, $filter){
+var cashRegisterApp = angular.module("crApp", []);
+cashRegisterApp.controller('crCtrl', function($scope, $filter){
     // Declare the coin objects with value, image, and name
 
     var purse = {
         dollar: {
-            name: "dollar coin",
+            name: "Dollar Coin",
             value: 1.00,
-            image: "dollar.png"
+            image: "css/img/dollar.png"
         },
         quarter: {
-            name: "quarter",
+            name: "Quarter",
             value: 0.25,
-            image: "quarter-front.png"
+            image: "css/img/quarter-front.png"
         },
         dime: {
-            name: "dime",
+            name: "Dime",
             value: 0.10,
-            image: "dime-front.png"
+            image: "css/img/dime-front.png"
         },
         nickel: {
-            name: "nickel",
+            name: "Nickel",
             value: 0.05,
-            image: "nickle-front.png"
+            image: "css/img/nickle-front.png"
         },
         penny: {
-            name: "penny",
+            name: "Penny",
             value: 0.01,
-            image: "penny-front.png"
+            image: "css/img/penny-front.png"
         }
     };
-
-    // Declaring an array that will be populated with the change and ng-repeat will iterate through it and populate the page
-
-    var changeArr = [];
-    $scope.changeArr = changeArr;
-
+    
     // Function that figures out the amount of change due and then loops through that amount with the types of coins available
-
     $scope.makeChange = function(){
+        // Declaring an array that will be populated with the change and ng-repeat will iterate through it and populate the page simultaneously it clears the previous data
+        var changeArr = [];
+        $scope.changeArr = changeArr;
         var leftOver = $filter('number')($scope.paid - $scope.total, '2');
         $scope.totalDue = $filter('currency')(leftOver, '$', '2');
         // Great for loop that compares the coin amount to the change total and then subtracts that amount from what is left
@@ -51,6 +48,7 @@ cashRegisterApp.controller('registerController', function($scope, $filter){
         }
         sortThroughCoins(changeArr);
     }
+
 
     // Sorts through the coins in the changeArr and puts them in order from highest value to lowest in order to iterate through the array and display the count for each type of coin
 
@@ -89,4 +87,21 @@ cashRegisterApp.controller('registerController', function($scope, $filter){
         }
         $scope.coinAmount = coinAmountArr;
     }
+
+});
+
+cashRegisterApp.directive('carousel', function($timeout) {
+ return {
+    restrict: 'E',
+    scope: {
+      links: '='
+    },
+    templateUrl: 'carousel.html',
+    link: function(scope, element) {
+      $timeout(function() {
+        $('.carousel-indicators li',element).first().addClass('active');
+        $('.carousel-inner .item',element).first().addClass('active');
+      });
+    }
+ }
 });

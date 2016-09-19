@@ -1,0 +1,24 @@
+img{
+    margin: auto;
+    width:  50px;
+    max-width: 50px;
+}
+
+#slides_control > div{
+  height: 200px;
+}
+
+#slides_control {
+  position:absolute;
+  width: 400px;
+  left:50%;
+  top:20px;
+  margin-left:-200px;
+}
+
+/* Include this file in your html if you are using the CSP mode. */
+
+.ng-animate.item:not(.left):not(.right) {
+  -webkit-transition: 0s ease-in-out left;
+  transition: 0s ease-in-out left
+}
