@@ -66,8 +66,10 @@ cashRegisterApp.controller('crCtrl', function($scope, $filter){
                 return 0;
             }
         });
+
         // Pushes amount of each type of coin to array for population on the page
-        for (var i = 0; i < arr.length; i++) {
+        for (var i = 0; i <= arr.length; i++) {
+            // if the preceeding item in the array doesn't share the same value as the current item then you're on to the next coin and it's time to push how many of the current coin we have
             if(arr[i] != current){
                 if(count > 1){
                     coinAmountArr.push("You have " + count + " " + current.name + "'s");
@@ -80,14 +82,8 @@ cashRegisterApp.controller('crCtrl', function($scope, $filter){
                 count++;
             }
         }
-        if(count > 1){
-            coinAmountArr.push("You have " + count + " " + current.name + "'s");
-        }else if(count == 1){
-            coinAmountArr.push("You have " + count + " " + current.name);
-        }
         $scope.coinAmount = coinAmountArr;
     }
-
 });
 
 cashRegisterApp.directive('carousel', function($timeout) {
